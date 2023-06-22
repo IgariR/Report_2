@@ -52,20 +52,20 @@
         scene.add(gridHelper);
         const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
         scene.add(axisHelper);
-        
+
         // 花をスプライトで作成
         var textureLoader = new THREE.TextureLoader();  
-        var texture = textureLoader.load("img/IMG_-3g8d6n.png");
+        var texture = textureLoader.load("img/");
         const material = new THREE.SpriteMaterial({ map: texture,});
-        
+
         // 花
         const sprite1 = new THREE.Sprite(material);
         sprite1.scale.set(1,2,1);
-        sprite1.position.set(0,0,0); //位置を指定
+        sprite1.position.set(-1,1,0); //位置を指定
         scene.add(sprite1);
-        
+
         update();
-        
+
         // 毎フレーム時に実行されるループイベントです
         function update() {
           // レンダリング
@@ -73,5 +73,5 @@
           requestAnimationFrame(update);
         }
       }
-     </script>
+    </script>
 </body>
