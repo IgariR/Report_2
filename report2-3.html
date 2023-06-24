@@ -55,6 +55,12 @@
        // テクスチャー読み込み
         var textureLoader = new THREE.TextureLoader();  
         var texture = textureLoader.load("img/DSC_0826.png");
+        var mat = new THREE.MeshPhongMaterial();
+        mat.map = texture;
+
+       // テクスチャー読み込み
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load("img/DSC_0826.png");
         var mat1 = new THREE.MeshPhongMaterial();
         mat1.map = texture;
         
@@ -76,7 +82,7 @@
        //半径、ドーナッツの太さ、ドーナッツのチューブ方向の分割数、水平方向の分割数
        //var torusMaterial = new THREE. MeshPhongMaterial( { color: 0x0000ff } );
        var torus2 = new THREE.Mesh( torusGeometry2, mat1 );
-       torus.position.set( 1, 0, 0);
+       torus2.position.set( 1, 0, 0);
        scene.add( torus2 );
        
       update();
@@ -88,8 +94,8 @@
           requestAnimationFrame(update);
 
            // ドーナッツを回転させる
-          torus.rotation.x += 0.01;
-          torus.rotation.y += 0.01;
+          //torus.rotation.x += 0.01;
+          //torus.rotation.y += 0.01;
 
         }
       }
