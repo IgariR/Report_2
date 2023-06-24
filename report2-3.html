@@ -60,16 +60,24 @@
         
         // バンプマップ読み込み
         var bump = textureLoader.load("img/DSC_0826.png");
-        mat.bumpMap = bump;
-        mat.bumpscale = 1;
+        mat2.bumpMap = bump;
+        mat2.bumpscale = 1;
        
        //ドーナッツ
        var torusGeometry = new THREE.TorusGeometry( 0.5, 0.2, 6, 12 ); 
        //半径、ドーナッツの太さ、ドーナッツのチューブ方向の分割数、水平方向の分割数
        //var torusMaterial = new THREE. MeshPhongMaterial( { color: 0x0000ff } );
-       var torus = new THREE.Mesh( torusGeometry, mat );
-       torus.position.set( 0, 0, 0);
+       var torus = new THREE.Mesh( torusGeometry, mat2 );
+       torus.position.set( -1, 0, 0);
        scene.add( torus );
+
+       //ドーナッツ2
+       var torusGeometry2 = new THREE.TorusGeometry( 0.5, 0.2, 6, 12 ); 
+       //半径、ドーナッツの太さ、ドーナッツのチューブ方向の分割数、水平方向の分割数
+       //var torusMaterial = new THREE. MeshPhongMaterial( { color: 0x0000ff } );
+       var torus2 = new THREE.Mesh( torusGeometry2, mat );
+       torus.position.set( 1, 0, 0);
+       scene.add( torus2 );
        
       update();
        
@@ -79,7 +87,7 @@
           renderer.render(scene, camera);
           requestAnimationFrame(update);
 
-           // 箱を回転させる
+           // ドーナッツを回転させる
           torus.rotation.x += 0.01;
           torus.rotation.y += 0.01;
 
