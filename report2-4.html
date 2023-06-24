@@ -89,13 +89,13 @@
         mat2.map = texture2;
 
         // 板ポリ1を作成
-        var geometry = new THREE.PlaneGeometry(2, 2);
+        var geometry = new THREE.PlaneGeometry(2, 1.5);
         var tobira1 = new THREE.Mesh(geometry, mat1);
         tobira1.position.set(1,1,0.255); //位置を指定
         scene.add(tobira1);
 
         // 板ポリ2を作成
-        var geometry = new THREE.PlaneGeometry(2, 2);
+        var geometry = new THREE.PlaneGeometry(2, 1.5);
         var tobira2 = new THREE.Mesh(geometry, mat1);
         tobira2.position.set(1,1,-0.255); //位置を指定
         scene.add(tobira2);
