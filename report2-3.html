@@ -55,19 +55,19 @@
        // テクスチャー読み込み
         var textureLoader = new THREE.TextureLoader();  
         var texture = textureLoader.load("img/DSC_0826.png");
-        var mat = new THREE.MeshPhongMaterial();
-        mat.map = texture;
+        var mat1 = new THREE.MeshPhongMaterial();
+        mat1.map = texture;
         
         // バンプマップ読み込み
         var bump = textureLoader.load("img/DSC_0826.png");
-        mat2.bumpMap = bump;
-        mat2.bumpscale = 1;
+        mat.bumpMap = bump;
+        mat.bumpscale = 1;
        
        //ドーナッツ
        var torusGeometry = new THREE.TorusGeometry( 0.5, 0.2, 6, 12 ); 
        //半径、ドーナッツの太さ、ドーナッツのチューブ方向の分割数、水平方向の分割数
        //var torusMaterial = new THREE. MeshPhongMaterial( { color: 0x0000ff } );
-       var torus = new THREE.Mesh( torusGeometry, mat2 );
+       var torus = new THREE.Mesh( torusGeometry, mat );
        torus.position.set( -1, 0, 0);
        scene.add( torus );
 
@@ -75,7 +75,7 @@
        var torusGeometry2 = new THREE.TorusGeometry( 0.5, 0.2, 6, 12 ); 
        //半径、ドーナッツの太さ、ドーナッツのチューブ方向の分割数、水平方向の分割数
        //var torusMaterial = new THREE. MeshPhongMaterial( { color: 0x0000ff } );
-       var torus2 = new THREE.Mesh( torusGeometry2, mat );
+       var torus2 = new THREE.Mesh( torusGeometry2, mat1 );
        torus.position.set( 1, 0, 0);
        scene.add( torus2 );
        
