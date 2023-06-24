@@ -71,6 +71,31 @@
         var box = new THREE.Mesh(geometry, material);
         box.position.set(0,1,0);
 
+        // 扉1テクスチャー読み込み
+        var textureLoader = new THREE.TextureLoader();  
+        var texture1 = textureLoader.load("img/koudaitobira1.png");
+        // 板ポリ1用
+       var mat1 = new THREE.MeshLambertMaterial({transparent: true});
+        mat1.map = texture1;
+         // 扉２テクスチャー読み込み
+        //var textureLoader = new THREE.TextureLoader();  
+        var texture2 = textureLoader.load("img/koudaitobira2.png");
+        // 板ポリ2用
+        var mat2 = new THREE.MeshLambertMaterial({transparent: true});
+        mat2.map = texture2;
+
+        // 板ポリ1を作成
+        var geometry = new THREE.PlaneGeometry(2, 2);
+        var tobira1 = new THREE.Mesh(geometry, mat1);
+        tobira1.position.set(-1,-1,0); //位置を指定
+        scene.add(tobira1);
+
+        // 板ポリ2を作成
+        var geometry = new THREE.PlaneGeometry(2, 2);
+        var tobira2 = new THREE.Mesh(geometry, mat2);
+        tobira2.position.set(1,1,0); //位置を指定
+        scene.add(tobira2);
+
         //全体のオブジェクト
 
         const all = new THREE.Group();
