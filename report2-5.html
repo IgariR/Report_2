@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://unpkg.com/three@0.137.4/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
+  </head>
+<body>
+  <h1>学校の門(第８回と第９回を合わせたやつ)</h1>
+  背景を水色に変えた。<br>
+  長方形に画像を張り付け、平面にテクスチャーを張った。
+ <script>
+      // ページの読み込みを待つ
+      window.addEventListener('DOMContentLoaded', init);
+
+      function init() {
+        // サイズを指定
+        const width = 800
+        const height = 600;
+
+        // レンダラーを作成
+        var renderer = new THREE.WebGLRenderer();
+        document.body.appendChild(renderer.domElement);
+        renderer.setSize(width, height);
+
+        // 背景の色を設定
+        renderer.setClearColor(0x87CEFA);
+
+
+        // シーンを作成
+        const scene = new THREE.Scene();
+
+        // カメラを作成
+        const camera = new THREE.PerspectiveCamera(30, width / height);
+        // カメラの初期座標を設定
+        camera.position.set(-5, 6.5, 5);
+
+        // カメラコントローラーを作成
+        const controls = new THREE.OrbitControls(camera, document.body); 
+        
+        // 平行光源1
+        var directionalLight1 = new THREE.DirectionalLight(0xffffff);
+        directionalLight1.position.set(15, 10, 15);
+        // シーンに追加
+        scene.add(directionalLight1);
+        // 平行光源2
+        var directionalLight2 = new THREE.DirectionalLight(0x888888);
+        directionalLight2.position.set(-10, -10, 10);
+        // シーンに追加
+        scene.add(directionalLight2);
+        // 平行光源3
+        var directionalLight3 = new THREE.DirectionalLight(0xffffff);
+        directionalLight3.position.set(-5, -10, 15);
+        // シーンに追加
+        scene.add(directionalLight3);
+
+        // helper
+        const gridHelper = new THREE.GridHelper(2,10); // size, step
+        scene.add(gridHelper);
+        const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
+        scene.add(axisHelper);
+
+        //6面分のテクスチャー読み込み
+        var materials = [
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudaiback.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudaiface.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/rock.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/rock.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudaiyoko1.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudaikoyo2.png")}),
+        ];
+ 
+        var material = new THREE.MeshFaceMaterial(materials); // マテリアルをセット
+
+        //6面分のテクスチャー読み込み2
+        var materials2 = [
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudai2.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudai2_1.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/rock.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/rock.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudai2_1.png")}),
+          new THREE.MeshLambertMaterial({map:THREE.ImageUtils.loadTexture("img/koudai2_1.png")}),
+        ];
+ 
+        var material2 = new THREE.MeshFaceMaterial(materials2); // マテリアルをセット
+
+        // 平面を作成
+        var planeGeometry = new THREE.PlaneGeometry(5,5,5,5);
+        var planeMaterial = new THREE.MeshBasicMaterial({color: 0x734e30});
+        var plane = new THREE.Mesh(planeGeometry,planeMaterial);
+        plane.rotation.set( -Math.PI/2, 0, 0 );
+        plane.position.set(0,0,0);
+
+        // 箱を作成
+        var geometry = new THREE.BoxGeometry(1, 2, 0.5);
+        var box = new THREE.Mesh(geometry, material);
+        box.position.set(0,1,0);
+
+         // 箱2を作成
+        var geometry2 = new THREE.BoxGeometry(0.8, 1.7, 0.5);
+        var box2 = new THREE.Mesh(geometry2, material2);
+        box2.position.set(-0.2,1,1.5);
+
+
+        // 扉1テクスチャー読み込み
+        //var textureLoader = new THREE.TextureLoader();  
+        //var texture1 = textureLoader.load("img/koudaitobira1.png");
+        // 板ポリ1用
+       //var mat1 = new THREE.MeshLambertMaterial({transparent: true});
+        //mat1.map = texture1;
+         // 扉２テクスチャー読み込み
+        //var textureLoader = new THREE.TextureLoader();  
+        //var texture2 = textureLoader.load("img/koudaitobira2.png");
+        // 板ポリ2用
+        //var mat2 = new THREE.MeshLambertMaterial({transparent: true});
+        //mat2.map = texture2;
+
+        // 板ポリ1を作成
+        //var geometry = new THREE.PlaneGeometry(2, 1.8);
+        //var tobira1 = new THREE.Mesh(geometry, mat1);
+        //tobira1.position.set(1,0.8,0.255); //位置を指定
+        //scene.add(tobira1);
+
+        // 板ポリ2を作成
+        //var geometry = new THREE.PlaneGeometry(2, 1.8);
+        //var tobira2 = new THREE.Mesh(geometry, mat1);
+        //tobira2.position.set(1,0.8,-0.255); //位置を指定
+        //scene.add(tobira2);
+
+        // 木をスプライトで作成
+        var textureLoader = new THREE.TextureLoader();  
+        var texture = textureLoader.load("img/koudaitobira1.png");
+        const material = new THREE.SpriteMaterial({ map: texture,});
+
+        // 板ポリ1
+        const sprite1 = new THREE.Sprite(material);
+        sprite1.scale.set(1,2,1);
+        sprite1.position.set(1,0.8,-0.255); //位置を指定
+        scene.add(sprite1);
+
+        // 板ポリ2
+        const sprite2 = new THREE.Sprite(material);
+        sprite2.scale.set(1,2,1);
+        sprite2.position.set(1,0.8,-0.255); //位置を指定
+        scene.add(sprite2);
+
+        //全体のオブジェクト
+
+        const all = new THREE.Group();
+        all.add(plane);//平面を追加
+        all.add(box); // 柱を追加
+        all.add(box2); // 柱2を追加
+        all.add(tobira1);//扉１
+        all.add(tobira2);//扉２
+        all.position.set(0,0,0);//全体グループの原点の位置
+        scene.add(all); 
+
+        update();
+
+        // 毎フレーム時に実行されるループイベントです
+        function update() {
+          // レンダリング
+          renderer.render(scene, camera);
+          requestAnimationFrame(update);
+
+          // 全体を回転させる
+          //all.rotation.y += 0.01;
+
+        }
+      }
+    </script>
+</body>
