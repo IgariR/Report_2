@@ -87,13 +87,13 @@
         // 板ポリ1を作成
         var geometry = new THREE.PlaneGeometry(2, 2);
         var tobira1 = new THREE.Mesh(geometry, mat1);
-        tobira1.position.set(-1,1,0.5); //位置を指定
+        tobira1.position.set(1,1,0.2); //位置を指定
         scene.add(tobira1);
 
         // 板ポリ2を作成
         var geometry = new THREE.PlaneGeometry(2, 2);
         var tobira2 = new THREE.Mesh(geometry, mat1);
-        tobira2.position.set(-1,1,-0.5); //位置を指定
+        tobira2.position.set(1,1,-0.2); //位置を指定
         scene.add(tobira2);
 
         //全体のオブジェクト
