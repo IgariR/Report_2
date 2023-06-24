@@ -5,8 +5,9 @@
     <script src="https://unpkg.com/three@0.137.4/examples/js/controls/OrbitControls.js"></script>
   </head>
 <body>
- <h1>森を作成</h1>
- ループで２０本の気を作った<br>
+ <h1>海を作成</h1>
+ ループで15匹の魚作成<br>
+  背景は海のように青っぽく変えた
  <script>
       // ページの読み込みを待つ
       window.addEventListener('DOMContentLoaded', init);
@@ -46,19 +47,13 @@
         // シーンに追加
         scene.add(directionalLight2);
 
-        // helper
-        const gridHelper = new THREE.GridHelper(2,10); // size, step
-        scene.add(gridHelper);
-        const axisHelper = new THREE.AxisHelper(2); //軸の長さ　X：赤、Y：緑、z：青
-        scene.add(axisHelper);
-
         // 魚をスプライトで作成
         var textureLoader = new THREE.TextureLoader();  
         var texture = textureLoader.load("sakana1.png");
         const material = new THREE.SpriteMaterial({ map: texture,});
 
         // 魚を作成
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 15; i++) {
           const sprite = new THREE.Sprite(material);
           // ランダムな座標に配置
           sprite.position.x = 2 * (Math.random() - 0.5);
